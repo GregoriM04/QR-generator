@@ -9,7 +9,7 @@ function newQrCode() {
     input.value;
 }
 
-generateButton.addEventListener("click", () => {
+function mainProcess() {
   if (input.value == "" || input.value == " ") {
     generateButton.classList.add("error");
     input.classList.add("error");
@@ -27,5 +27,14 @@ generateButton.addEventListener("click", () => {
       generateButton.classList.remove("success");
       generateButton.innerHTML = "Generate";
     }, 2500);
+  }
+}
+
+// run the mainProcess function when hit Generate button and Enter key
+generateButton.addEventListener("click", mainProcess);
+input.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    mainProcess();
   }
 });
