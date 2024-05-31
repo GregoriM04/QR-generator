@@ -10,10 +10,11 @@
   --dark-color: #060d49;
   --white-color: #ffffff;
   --black-color: #000000;
+  --danger-color: #dc3545;
+  --success-color: #198754;
 
   /* fonts */
   --primary-font: "Poppins", sans-serif;
-  --secondary-font: ;
 
   /* transitions */
   --trans-3s: all 0.3s ease;
@@ -41,10 +42,9 @@
 }
 
 body {
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  background-color: var(--light-color);
+  color: var(--dark-color);
 }
-
 
 /* Header styles */
 .header {
@@ -56,15 +56,80 @@ body {
 }
 
 .header .title {
+  margin-top: var(--spacing-5);
   font-size: 3rem;
 }
 
 /* Main styles */
+.main {
+  margin: 0 auto;
+  width: 75%;
+  height: auto;
+}
 
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--spacing-5);
+}
+.picture {
+  padding: var(--spacing-3);
+}
 
+.qr-picture {
+  width: 470px;
+  height: auto;
+}
 
+.qr-generate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow);
+  padding: var(--spacing-5);
+  border-radius: 5px;
+  min-width: 340px;
+}
 
+.qr-generate h3 {
+  align-self: flex-start;
+  font-weight: 700;
+  margin-bottom: var(--spacing-3);
+  font-size: 22px;
+  color: var(--dark-color);
+}
 
+.qr-generate input {
+  width: 100%;
+  height: 50px;
+  border: 3px solid var(--dark-color);
+  outline: 0;
+  padding: var(--spacing-2);
+  margin: var(--spacing-2) 0 var(--spacing-3);
+  border-radius: 5px;
+}
+
+.qr-generate input:focus {
+  border: 3px solid var(--primary-color);
+}
+
+.qr-generate .qr-response {
+  transition: var(--trans-5s);
+}
+
+.qr-generate button {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  font-size: 14px;
+  border-radius: 5px;
+  margin: var(--spacing-2) 0 var(--spacing-3);
+}
 
 /* Media queries - From Desktop to Mobile */
 /* Largest devices (1400px and down) */
@@ -73,16 +138,53 @@ body {
 
 /* Extra Large devices (1200px and down) */
 @media only screen and (max-width: 75rem) {
+  .main {
+    width: 80%;
+  }
+  .qr-generate h3 {
+    font-size: 20px;
+  }
+
+  .qr-picture {
+    width: 440px;
+  }
 }
 
 /* Large devices (992px and down) */
 @media only screen and (max-width: 62rem) {
+  .main {
+    width: 92%;
+  }
+
+  .qr-picture {
+    padding: 0;
+    width: 380px;
+  }
+
+  .qr-generate h3 {
+    font-size: 18px;
+  }
 }
 
 /* Medium devices (768px and down) */
 @media only screen and (max-width: 48rem) {
+  .header .title {
+    font-size: 2.5rem;
+  }
+
+  .container {
+    flex-direction: column;
+    margin-top: var(--spacing-2);
+  }
+
+  .qr-picture {
+    width: 300px;
+  }
 }
 
 /* Small devices (576px and down) */
 @media only screen and (max-width: 36rem) {
+  .header .title {
+    font-size: 2.2rem;
+  }
 }
