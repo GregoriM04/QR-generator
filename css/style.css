@@ -118,6 +118,7 @@ body {
 
 .qr-generate .qr-response {
   transition: var(--trans-5s);
+  margin-bottom: var(--spacing-2);
 }
 
 .qr-generate button {
@@ -129,6 +130,42 @@ body {
   font-size: 14px;
   border-radius: 5px;
   margin: var(--spacing-2) 0 var(--spacing-3);
+  transition: var(--trans-5s);
+  cursor: pointer;
+}
+
+/* success feedback */
+.qr-generate button.success {
+  background-color: var(--success-color);
+}
+
+/* error feedback */
+.qr-generate input.error {
+  border: 3px solid var(--danger-color);
+  animation: shake 0.1s linear 10;
+}
+
+.qr-generate button.error {
+  background-color: var(--danger-color);
+  animation: shake 0.1s linear 10;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
 
 /* Media queries - From Desktop to Mobile */
