@@ -1,5 +1,5 @@
 /* Importing local fonts */
-@import url("/css/fonts.css");
+@import url("./css/fonts.css");
 
 /* Custom variables */
 :root {
