@@ -94,6 +94,7 @@ body {
   border-radius: 5px;
   min-width: 340px;
   margin-bottom: var(--spacing-3);
+  position: relative;
 }
 
 .qr-generate .section-text {
@@ -168,11 +169,6 @@ body {
   color: var(--light-color);
 }
 
-/* success feedback */
-.qr-generate .generate-btn.success {
-  background-color: var(--success-color);
-}
-
 /* error feedback */
 .qr-generate .user-input.error {
   border: 3px solid var(--danger-color);
@@ -184,6 +180,39 @@ body {
   animation: shake 0.1s linear 10;
 }
 
+/* loading feedback */
+.generate-btn.blink {
+  animation: blink 2.2s ease 0s infinite normal forwards;
+}
+
+/* success feedback */
+.success {
+  position: absolute;
+  font-size: 16px;
+  top: 10px;
+  color: var(--success-color);
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  opacity: 0;
+  transition: var(--trans-3s);
+}
+
+.success ion-icon {
+  width: 25px;
+  font-size: 20px;
+}
+
+.success.showUp {
+  animation: showUp 2s ease 0s 1 normal forwards;
+  opacity: 1;
+}
+.qr-generate .user-input.success-color {
+  border: 3px solid var(--success-color);
+  transition: var(--trans-3s);
+}
+
+/* Key frames - error, loading and sucess animations */
 @keyframes shake {
   0% {
     transform: translateX(0px);
@@ -199,6 +228,31 @@ body {
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

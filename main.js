@@ -3,6 +3,7 @@ const input = document.getElementById("user-input");
 const qrResponse = document.getElementById("qr-response");
 const generateButton = document.getElementById("generate-btn");
 const downloadButton = document.getElementById("download-btn");
+const success = document.getElementById("success");
 
 function newQrCode() {
   qrResponse.src =
@@ -22,14 +23,18 @@ function mainProcess() {
       generateButton.innerHTML = "Generate";
     }, 1500);
   } else {
-    newQrCode();
-    generateButton.classList.add("success");
-    generateButton.innerHTML = "Done!";
+    generateButton.classList.add("blink");
     setTimeout(() => {
-      generateButton.classList.remove("success");
-      generateButton.innerHTML = "Generate";
+      newQrCode();
+      generateButton.classList.remove("blink");
+      success.classList.add("showUp");
+      input.classList.add("success-color");
     }, 2000);
     checkIfActive();
+    setTimeout(() => {
+      success.classList.remove("showUp");
+      input.classList.remove("success-color");
+    }, 5000);
   }
 }
 
@@ -73,7 +78,7 @@ function checkIfActive() {
   }
   setTimeout(() => {
     downloadButton.classList.add("active");
-  }, 2000);
+  }, 3000);
 }
 
 //erase generated QR if next input is empty
