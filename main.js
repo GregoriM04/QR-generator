@@ -48,9 +48,9 @@ input.addEventListener("keypress", function (event) {
 });
 
 // download functionality
-const qrURL =
-  "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-  input.value;
+// const qrURL =
+//   "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+//   input.value;
 
 // function fetchURL(url) {
 //   fetch(url).then((res) =>
@@ -66,26 +66,29 @@ const qrURL =
 //   );
 // }
 
-function downloadQr(url) {
-  let xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "blob";
-    xhr.onload = function(){
-        let urlCreator = window.URL || window.webkitURL;
-        let imageUrl = urlCreator.createObjectURL(this.response);
-        let tag = document.createElement('a');
-        tag.href = imageUrl;
-        tag.download = 'qr';
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
-    }
-    xhr.send();
+function downloadQr() {
+  const qrURL =
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+    input.value;
+
+  fetch(qrURL, { mode: "cors" })
+    .then((response) => response.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const aTag = document.createElement("a");
+      aTag.href = url;
+      aTag.download = "qr";
+      document.body.appendChild(aTag);
+      aTag.click();
+      document.body.removeChild(aTag);
+      window.URL.revokeObjectURL(url);
+    })
+    .catch((error) => console.error("Error downloading the image:", error));
 }
 
 downloadButton.addEventListener("click", (e) => {
   e.preventDefault();
-  downloadQr(qrURL);
+  downloadQr();
 });
 
 // check if download button has 'active' attribute
