@@ -48,24 +48,6 @@ input.addEventListener("keypress", function (event) {
 });
 
 // download functionality
-// const qrURL =
-//   "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-//   input.value;
-
-// function fetchURL(url) {
-//   fetch(url).then((res) =>
-//     res.blob().then((image) => {
-//       let tempUrl = URL.createObjectURL(image);
-//       let aTag = document.createElement("a");
-//       aTag.href = tempUrl;
-//       aTag.download = "qr";
-//       document.body.appendChild(aTag);
-//       aTag.click();
-//       aTag.remove();
-//     })
-//   );
-// }
-
 function downloadQr() {
   const qrURL =
     "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
