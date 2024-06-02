@@ -52,23 +52,40 @@ const qrURL =
   "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
   input.value;
 
-function fetchURL(url) {
-  fetch(url).then((res) =>
-    res.blob().then((image) => {
-      let tempUrl = URL.createObjectURL(image);
-      let aTag = document.createElement("a");
-      aTag.href = tempUrl;
-      aTag.download = "qr";
-      document.body.appendChild(aTag);
-      aTag.click();
-      aTag.remove();
-    })
-  );
+// function fetchURL(url) {
+//   fetch(url).then((res) =>
+//     res.blob().then((image) => {
+//       let tempUrl = URL.createObjectURL(image);
+//       let aTag = document.createElement("a");
+//       aTag.href = tempUrl;
+//       aTag.download = "qr";
+//       document.body.appendChild(aTag);
+//       aTag.click();
+//       aTag.remove();
+//     })
+//   );
+// }
+
+function downloadQr(url) {
+  let xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.responseType = "blob";
+    xhr.onload = function(){
+        let urlCreator = window.URL || window.webkitURL;
+        let imageUrl = urlCreator.createObjectURL(this.response);
+        let tag = document.createElement('a');
+        tag.href = imageUrl;
+        tag.download = 'qr';
+        document.body.appendChild(tag);
+        tag.click();
+        document.body.removeChild(tag);
+    }
+    xhr.send();
 }
 
 downloadButton.addEventListener("click", (e) => {
   e.preventDefault();
-  fetchURL(qrURL);
+  downloadQr(qrURL);
 });
 
 // check if download button has 'active' attribute
